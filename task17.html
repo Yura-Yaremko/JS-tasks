@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function cakes(recipe, ingredients) {
+            let arrCount = [].sort((a, b) => a - b)
+            for (let key in recipe) {
+                arrCount.push(Math.floor(ingredients[key] / recipe[key]) || 0)
+            }
+            return arrCount[0]
+        }
+
+        console.log(cakes({ flour: 500, sugar: 200, eggs: 1 },
+            { flour: 1200, sugar: 1200, eggs: 5, milk: 200 }))
+        console.log(cakes({ apples: 3, flour: 300, sugar: 150, milk: 100, oil: 100 },
+            { sugar: 500, flour: 2000, milk: 2000 }))
+
+        //------------------
+        function restoreString(str, arr) {
+            let result = ''
+            str.split('')
+            for (let i = 0; i < arr.length; i++) {
+                result += `${str[arr[i]]}`
+            }
+            return result
+        }
+
+        console.log(restoreString('домик', [4, 1, 0, 3, 2]))
+        console.log(restoreString('украл', [1, 4, 3, 2, 0]))
+        //-----------------------------
+
+        const createString = (splitter, ...elements) => {
+            return elements.reduce((result, item) => {
+                if (item !== elements[elements.length - 1]) {
+                    result += (`${item}${splitter}`)
+                    return result
+                } else {
+                    result += (`${item}`)
+                    return result
+                }
+            }, '')
+        }
+
+
+        console.log(createString('*', '123', 'ogogh', 'hello'))
+
+    </script>
+</body>
+
+</html>

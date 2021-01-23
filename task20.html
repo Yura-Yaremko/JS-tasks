@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function list(names) {
+            // let resArr = []
+            // let result = ''
+            // for (let i = 0; i < names.length; i++) {
+            //     resArr.push(names[i].name)
+            // }
+            // for (let i = 0; i < resArr.length; i++) {
+            //     if (resArr[i] !== resArr[resArr.length - 2] && resArr[i] !== resArr[resArr.length - 1]) {
+            //         result += `${resArr[i]}, `
+            //     } else if (resArr[i] === resArr[resArr.length - 2]) {
+            //         result += `${resArr[i]} & `
+            //     } else if (resArr[i] === resArr[resArr.length - 1]) {
+            //         result += `${resArr[i]}`
+            //     }
+            // }
+            // return result
+            //-----------------------
+            return names.map(el => el.name).reduce((result, item, id, arr) => {
+                if (item[id] !== item[arr.length - 1] && item[id] !== item[arr.length - 2]) {
+                    result += `${item}, `
+                    return result
+                } else if (item[id] === item[arr.length - 2]) {
+                    result += `${item} & `
+                    return result
+                } else if (item[id] === item[arr.length - 1]) {
+                    result += `${item}`
+                    return result
+                }
+            }, '')
+        }
+
+        console.log(list([{ name: 'Bart' }, { name: 'Lisa' }, { name: 'Maggie' }]))
+        console.log(list([{ name: 'Bart' }, { name: 'Lisa' }]))
+        console.log(list([{ name: 'Bart' }]))
+        console.log(list([]))
+
+    </script>
+</body>
+</body>
+
+</html>

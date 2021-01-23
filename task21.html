@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function leftPad(symbolsCount, str) {
+            if (symbolsCount > str.length) {
+                let dif = symbolsCount - str.length
+                let strArr = str.split('')
+                for (let i = 0; i < dif; i++) {
+                    strArr.unshift(' ')
+                }
+                return strArr.join('')
+            } else {
+                return str
+            }
+        }
+        console.log(leftPad(6, 'test'))
+        console.log(leftPad(3, 'test'))
+
+        //-----------------------
+
+        function objCreator(arr) {
+            if (!arr.length) return {}
+
+            const variable = arr.splice(0, 1)
+
+            return { [variable]: objCreator(arr) }
+        }
+
+        console.log(objCreator(['a', 'b', 'c']))
+        console.log(objCreator(['a', 'b', 'c', 'd']))
+        console.log(objCreator([]))
+
+        function accum(str) {
+            const arrStr = str.split('')
+
+            return arrStr.reduce((str, item, idx) => {
+                const loverVar = item.toLowerCase()
+                const firstVar = loverVar.toUpperCase()
+                const repeatVar = loverVar.repeat(idx)
+
+                if (!idx) {
+                    return str + firstVar
+                }
+                return str + '-' + firstVar + repeatVar
+            }, '')
+        }
+
+        console.log(accum('abcd'))
+        console.log(accum('RqaEzty'))
+        console.log(accum('cwAt'))
+    </script>
+</body>
+
+</html>

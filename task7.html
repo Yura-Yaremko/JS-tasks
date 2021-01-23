@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // //------------------
+        function getEventChars(str) {
+            return str.length === 1 || str.length > 100 ? console.log('It\'s wrong string') : str.split('').filter((el, id) => id % 2 !== 0 ? true : false)
+        }
+
+        console.log(getEventChars('abcdefghijklm'))
+        console.log(getEventChars('a'))
+
+        //-----------------------
+
+        function isPrime(num) {
+            if (typeof (num) !== 'number' || Number.isInteger(num) === false) return false
+            for (let i = 2; i < num; i++) {
+                if (num % i === 0) {
+                    return false
+                }
+            }
+            return true
+        }
+
+        console.log(isPrime(12))
+        console.log(isPrime(23))
+        console.log(isPrime(3))
+        console.log(isPrime(5))
+        console.log(isPrime(7))
+
+    </script>
+</body>
+
+</html>

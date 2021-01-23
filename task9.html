@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <script>
+
+        function iqTEst(numbers) {
+            // let even = []
+            // let odd = []
+            // let arr = numbers.split(' ').map(item => parseInt(item)).filter((item, id) => item % 2 === 0 ? even.push(id + 1) : odd.push(id + 1))
+
+            // return even.length > odd.length ? odd[0] : even[0]
+
+            //--------------
+
+            let arr = numbers.split(' ')
+            let oddCount = (arr[0] % 2) + (arr[1] % 2) + (arr[2] % 2)
+            if (oddCount < 2) return arr.findIndex(item => item % 2) + 1
+            else return arr.findIndex(item => !item % 2) + 1
+        }
+
+        console.log(iqTEst('2 4 7 8 10'))
+        console.log(iqTEst('1 2 2'))
+
+        //-------------------------------
+
+        function isPrime(number) {
+            for (let i = 2; i < number; i++) {
+                if (number % i === 0) return false
+            }
+            return true
+        }
+
+        function findNearestPrimeNumb(num) {
+            if (num < 2) return 2
+            if (isPrime(num)) return num
+            for (let i = 1; true; i++) {
+                if (isPrime(num - i)) return num - i
+                if (isPrime(num + i)) return num + i
+            }
+        }
+
+        console.log(findNearestPrimeNumb(4))
+        console.log(findNearestPrimeNumb(3))
+        console.log(findNearestPrimeNumb(11))
+        console.log(findNearestPrimeNumb(125))
+        console.log(findNearestPrimeNumb(110))
+        console.log(findNearestPrimeNumb(1110))
+        console.log(findNearestPrimeNumb(350000))
+
+
+    </script>
+</body>
+
+</html>

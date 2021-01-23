@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function fibo(num) {
+            let a = 0
+            let b = 1
+            for (let i = 2; i <= num; i++) {
+                let c = a + b
+                a = b
+                b = c
+            }
+            return b
+        }
+
+        console.log(fibo(3))
+        console.log(fibo(7))
+        console.log(fibo(77))
+        console.log(fibo(167))
+
+        //------------------------
+
+        function moveArr(arr, step) {
+            let shortStep = step % arr.length
+            let res = arr.slice(-shortStep).concat(arr.slice(0, -shortStep))
+            return res
+
+        }
+
+        console.log(moveArr([1, 2, 3, 4, 5], 2))
+        console.log(moveArr([1, 2, 3, 4, 5], -2))
+
+    </script>
+</body>
+
+</html>

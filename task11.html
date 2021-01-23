@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        function invert(obj) {
+            // let keys = []
+            // let values = []
+            // let result = {}
+            // for (key in obj) {
+            //     keys.push(key)
+            // }
+            // for (let i = 0; i < keys.length; i++) {
+            //     values.push(obj[keys[i]])
+            // }
+            // for (let j = 0; j < values.length; j++) {
+            //     result[values[j]] = keys[j]
+            // }
+            // return result
+
+            //-----------------------------
+
+            // let values = Object.values(obj)
+            // let keys = Object.keys(obj)
+            // let result = {}
+
+            // for (let i = 0; i < values.length; i++) {
+            //     result[values[i]] = keys[i]
+            // }
+            // return result
+
+            //--------------------------------------
+
+            // return Object.entries(obj).reduce((acc, cur) => {
+            //     acc[cur[1]] = cur[0]
+            //     return acc
+            // }, {})
+
+            //--------------------------------------
+
+            return Object.entries(obj).reduce((acc, cur) => (acc[cur[1]] = cur[0], acc), {})
+        }
+
+        console.log(invert({ a: 1, b: 2, c: 3, d: 4 }))
+        console.log(invert({ a: 1, b: 2, c: 1 }))
+
+        //---------------------------
+
+        function optionalChaining(obj, arr) {
+            if (typeof obj[arr[0]] === 'object') {
+                return optionalChaining(obj[arr[0]], arr.slice(1))
+            }
+            return arr.length > 1 ? undefined : obj[arr[0]]
+        }
+
+
+        const object = {
+            a: {
+                b: {
+                    c: {
+                        d: "Hello!"
+                    }
+                }
+            }
+        }
+
+        console.log(optionalChaining(object, ['a', 'b', 'c', 'd']))
+        console.log(optionalChaining(object, ['a', 'b', 'c', 'd', 'e']))
+        console.log(optionalChaining(object, ['a', 'c', 'd']))
+        console.log(optionalChaining(object, ['b', 'd', 'c']))
+
+        //----------------------------------
+
+        function longestCommonPrefix(words) {
+            let prefix = ''
+
+            for (let i = 0; i < words[0].length; i++) {
+                const letter = words[0][i]
+                const flag = words.every((word) => {
+                    return letter === word[i]
+                })
+                if (!flag) {
+                    break
+                }
+                prefix += letter
+            }
+            return prefix
+        }
+
+        console.log(longestCommonPrefix(['привет', 'правила', 'проезд']))
+
+    </script>
+</body>
+
+</html>

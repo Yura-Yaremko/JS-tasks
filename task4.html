@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        function reverse(str, from, to) {
+            const firstPart = str.slice(0, from)
+            const secondPart = Array.from(str.slice(from, to + 1)).reverse().join('')
+            const thirdPart = str.slice(to + 1)
+            return firstPart + secondPart + thirdPart
+        }
+
+        console.log(reverse("mockinterview", 1, 5))
+        console.log(reverse("codingIsFun", 2, 100))
+
+        //--------------------------------
+
+        function howManySevenIncludesInArray(arr) {
+            return arr.flat().map(item => item.toString()).reduce((acc, item) => {
+                const splitItem = item.split("")
+                const tempValue = splitItem.reduce((acccam, value) => {
+                    if (value.includes('7')) {
+                        acccam++
+                    }
+                    return acccam
+                }, 0)
+                acc += tempValue
+                return acc
+            }, 0)
+
+        }
+
+        console.log(howManySevenIncludesInArray([
+            [4, 7.7, 81.4],
+            [-17, 4.8, 171],
+            [15, 2.7, -3]
+        ]))
+
+    </script>
+</body>
+
+</html>

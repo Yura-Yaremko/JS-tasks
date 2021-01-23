@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const moveZeros = arr => {
+            return [...arr.filter(item => item !== 0), ...arr.filter(item => item === 0)]
+            // ------------------
+            // let zero = []
+            // let other = []
+            // for (let i = 0; i < arr.length; i++) {
+            //     arr[i] === 0 ? zero.push(arr[i]) : other.push(arr[i])
+            // }
+            // return [...other, ...zero]
+            // ---------------------
+            // let zero = []
+            // let other = []
+            // arr.forEach(item => item === 0 ? zero.push(item) : other.push(item))
+            // return [...other, ...zero]
+            // ------------------------
+            let result = [...arr]
+            let zero = []
+            for (let i = 0; i < result.length; i++) {
+                if (result[i] === 0) {
+                    zero.push(...result.splice(i, 1))
+                    i--
+                }
+            }
+            return [...result, ...zero]
+            // ----------------------
+            // arr.map((item, id) => {
+            //     if (item === 0) {
+            //         arr.splice(id, 1)
+            //         arr.push(item)
+            //     }
+            // })
+            // return arr
+        }
+
+        console.log(moveZeros([false, 1, 0, 1, 2, 0, 1, 3, 'a']))
+
+        //---------------------------------
+
+        function oddCount(n) {
+            // let result = []
+            // let counter = 0
+            // for (let i = 1; i < n; i += 2) {
+            //     counter++
+            //     result.push(i)
+            // }
+            // return result
+            // return counter
+            // ---------------------
+            //     let res = []
+            // let counter = 0
+            // for (let i = 1; i < n; i++) {
+            //     if (i % 2 !== 0) {
+            //         counter++
+            //     }
+            // }
+            // return counter
+            // -----------------------
+            // return n > 0 ? ((n % 2 === 0) ? (n / 2) : (n - 1) / 2) : 0
+            // -----------------------
+            return n > 0 ? (Math.floor(n / 2)) : 0
+        }
+
+        console.log(oddCount(7))
+        console.log(oddCount(15))
+
+        //-------------------------------
+
+        // function landPerimenter(arr) {
+        //     let sum = 0
+        //     for (let i = 0; i < arr.length; i++) {
+        //         for (let j = 0; arr[i].length; j++) {
+        //             if (arr[i][j] === 'X') {
+        //                 let neighbors = [
+        //                     arr?.[i - 1]?.[j],
+        //                     arr?.[i + 1]?.[j],
+        //                     arr?.[i]?.[j - 1],
+        //                     arr?.[i]?.[j + 1]
+        //                 ]
+        //                 sum += neighbors.reduce((acc, el) => el !== 'X' ? acc + 1 : acc, 0)
+        //             }
+        //         }
+        //     }
+        //     return sum
+        // }
+        // console.log(landPerimenter([
+        //     'XOOXO',
+        //     'XOOXO',
+        //     'OOOXO',
+        //     'XXOXO',
+        //     'OXOOO'
+        // ]))
+
+        function isSloved(board) {
+            let combinations = [
+                //rows
+                [board[0][0], board[0][1], board[0][2]],
+                [board[1][0], board[1][1], board[1][2]],
+                [board[2][0], board[2][1], board[2][2]],
+                //cols
+                [board[0][0], board[1][0], board[2][0]],
+                [board[0][1], board[1][1], board[2][1]],
+                [board[0][2], board[1][2], board[2][2]],
+                //diagonals
+                [board[0][0], board[1][1], board[2][2]],
+                [board[2][0], board[1][1], board[0][2]]
+            ]
+            for (let i = 0; i < combinations.length; i++) {
+                if (combinations[i].every(el => el === 1)) return 'Win X'
+                if (combinations[i].every(el => el === 2)) return 'Win 0'
+            }
+            return board.flat().some(el => el === 0) ? -1 : 0
+
+        }
+
+        console.log(isSloved([
+            [1, 2, 1],
+            [1, 1, 2],
+            [2, 1, 2]
+        ]))
+
+
+    </script>
+</body>
+
+</html>

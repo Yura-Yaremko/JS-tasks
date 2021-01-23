@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function solve(arr) {
+            let result = []
+            let lastIndexN
+            let testObject = {}
+
+            for (let i = 0; i < arr.length; i++) {
+                if (testObject[arr[i]] > 0) {
+                    testObject[arr[i]] += 1
+                    continue
+                }
+                testObject[arr[i]] = 1
+            }
+            return arr.slice().sort((a, b) => testObject[b] - testObject[a] || a - b)
+        }
+
+        console.log(solve([2, 3, 5, 3, 7, 9, 5, 3, 7]))
+        console.log(solve([4, 9, 5, 0, 7, 3, 8, 4, 9, 0]))
+
+        //--------------------------------------
+
+        // function splitByValue(k, elements) {
+        //     let result = [...elements]
+        //     let arr = []
+        //     for (let i = 0; i < result.length; i++) {
+        //         if (result[i] < k) {
+        //             arr.push(result[i])
+        //             result.splice(i, 1)
+        //             i--
+        //         }
+        //     }
+        //     return result = [...arr, ...result]
+        // }
+
+        //-------------------------------
+
+        // function splitByValue(k, elements) {
+        //     let arrElements = [...elements]
+        //     let smallerThanK = []
+        //     for (let i = 0; i < arrElements.length; i++) {
+        //         if (arrElements[i] < k) {
+        //             smallerThanK.push(arrElements[i])
+        //             arrElements.splice(i, 1)
+        //             i--
+        //         }
+        //     }
+        //     return [...smallerThanK, ...arrElements]
+        // }
+
+        // console.log(splitByValue(5, [1, 3, 5, 7, 6, 4, 2])) //[1, 3, 4, 2, 5, 7, 6]
+        // console.log(splitByValue(0, [5, 2, 7, 3, 2])) //[5, 2, 7, 3, 2]
+        // console.log(splitByValue(6, [6, 4, 10, 10, 6]))//[4, 6, 10, 10, 6]
+
+        function splitByValue(k, elements) {
+            return [...elements.filter(i => i < k), ...elements.filter(i => i >= k)]
+        }
+        console.log(splitByValue(5, [1, 3, 5, 7, 6, 4, 2])) //[1, 3, 4, 2, 5, 7, 6]
+        console.log(splitByValue(0, [5, 2, 7, 3, 2])) //[5, 2, 7, 3, 2]
+        console.log(splitByValue(6, [6, 4, 10, 10, 6]))//[4, 6, 10, 10, 6]
+
+    </script>
+
+</body>
+
+</html>

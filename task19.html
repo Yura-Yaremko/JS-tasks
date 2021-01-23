@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function sum(arr) {
+            let sumMain = 0
+            let sumAdditional = 0
+            let length = arr[0].length - 1
+            for (let i = 0; i < arr.length; i++) {
+                sumMain += arr[i][i]
+                sumAdditional += arr[i][length - i]
+            }
+            return sumMain + sumAdditional
+        }
+
+        console.log(sum([
+            [1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 9]
+        ]))
+        console.log(sum([
+            [1, 2, 3, 4],
+            [5, 6, 7, 8],
+            [9, 10, 11, 12],
+            [13, 14, 15, 16]
+        ]))
+
+        //-----------------------
+        function spacey(arr) {
+            let result = ''
+            return arr.reduce((res, item, id) => {
+                let str = item.split('').map((el, id) => id === 0 ? el.toUpperCase() : el).join('')
+                result += str
+                res.push(result)
+                return res
+            }, [])
+        }
+
+        console.log(spacey(['I', 'am', 'really', 'into', 'programing']))
+    </script>
+</body>
+
+</html>

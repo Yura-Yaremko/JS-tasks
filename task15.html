@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function realizeDistance(distance, stopAfter) {
+            let countOfStops = Math.round(distance / stopAfter)
+            let leftToRide = distance - (countOfStops * stopAfter)
+            if (distance < stopAfter) {
+                return `You have passed ${distance} kilometers and came at the place`
+            } else if (distance % stopAfter === 0) {
+                for (let i = 1; i < countOfStops + 1; i++) {
+                    if (i === countOfStops) {
+                        console.log(`It was stop №${i} and you have passed ${stopAfter * i} kilometers and arrived at the place`)
+                    } else {
+                        console.log(`It was stop №${i} and you have passed ${stopAfter * i} kilometers`)
+                    }
+                }
+            } else {
+                for (let i = 1; i < countOfStops + 1; i++) {
+                    console.log(`It was stop №${i} and you have passed ${stopAfter * i} kilometers`)
+                }
+                return `You have passed ${leftToRide} kilometers and arrived at the place`
+            }
+        }
+        console.log(realizeDistance(100, 150))
+        console.log(realizeDistance(1000, 300))
+        console.log(realizeDistance(900, 300))
+
+        //---------------------------
+        function differenceInAGes(ages) {
+            return [Math.min(...ages), Math.max(...ages), Math.max(...ages) - Math.min(...ages)]
+            //-------------
+            // let min = ages[0]
+            // let max = ages[0]
+            // for (let i = 0; i < ages.length; i++) {
+            //     if (ages[i] < min) {
+            //         min = ages[i]
+            //     } else if (ages[i] > max) {
+            //         max = ages[i]
+            //     }
+            // }
+            // return [min, max, max - min]
+
+        }
+        console.log(differenceInAGes([82, 15, 6, 38, 35]))
+        console.log(differenceInAGes([57, 99, 14, 32]))
+
+
+
+    </script>
+
+</body>
+
+</html>

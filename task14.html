@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function getRandomArr() {
+            let result = []
+
+            // for (let i = 0; i < 200; i++) {
+            //     let num = Math.floor(Math.random() * 199 + 1)
+            //     if (result.includes(num) === false && result.length !== 100) {
+            //         result.push(num)
+            //     }
+            // }
+            // return result
+
+            //------------------
+            // let result = []
+
+            // for (let i = 0; i < 100; i++) {
+            //     let num = Math.floor(Math.random() * 199 + 1)
+            //     if (result.includes(num) === false && result.length !== 100) {
+            //         result.push(num)
+            //         i--
+            //     }
+            // }
+            // return result
+
+            //-------------
+
+            let set = new Set()
+            while (set.size < 100) {
+                set.add(Math.floor(Math.random() * 199 + 1))
+            }
+            return [...set]
+        }
+        console.log(getRandomArr())
+
+        function func(arr) {
+            // let a = [...arr]
+            // let index = a.findIndex((el) => el === 0)
+            // let b = a.splice(index)
+            // let c = [...a, ...a].sort()
+            // return c
+            //-------------------
+            // return [...arr.filter(el => el !== 0), ...arr.filter(el => el !== 0)].sort()
+            //--------------------
+            let index = arr.findIndex(item => item === 0)
+            let newArr = arr.splice(index)
+            let res
+            for (let i = 0; i < newArr.length; i++) {
+                res = newArr.splice(i, 0, newArr[i])
+                i++
+            }
+            return res
+        }
+        const array = [1, 2, 3, 4, 5, 0, 0, 0, 0, 0]
+        const array2 = [2, 3, 4, 7, 1, 0, 0, 0, 0, 0]
+
+        console.log(func(array))
+        console.log(func(array2))
+
+        //----------------------
+
+        function existsDuplicate(numbers) {
+            // let length = numbers.length
+            // let set = Array.from(new Set(numbers)).length
+            // let size = (new Set(numbers)).size
+            // return size < length && size !== length ? true : false
+            // -----------------------------
+            numbers.length !== new Set(numbers).size
+        }
+
+        console.log(existsDuplicate([4, 6, 7, 7, 1]))
+        console.log(existsDuplicate([1, 1, 5, 4, 4, 10]))
+        console.log(existsDuplicate([1, 5, 8, 21, 45]))
+
+        //---------------------------------
+        // Array.prototype.expect = function (a) {
+        //     return a.typeof === 'object' ? this.filter((elem, id) => !a.includes(id)) : this.filter((elem, id) => id !== a)
+        // }
+
+        // const array = ['a', 'b', 'c', 'd', 'e']
+        // console.log(array.expect([1, 3]))
+        // console.log(array.expect(1))
+
+        //---------------------
+        Array.prototype.expect = function (a) {
+            if (typeof a === 'number') {
+                return this.filter((value, ind) => ind !== a)
+            } else {
+                return this.filter((value, ind) => !a.includes(ind))
+            }
+        }
+
+        const arr = ['a', 'b', 'c', 'd', 'e']
+        console.log(array.expect([1, 3]))
+        console.log(array.expect(1))
+        //---------------------------
+
+        const mirror = obj => {
+            let keys = Object.keys(obj)
+            return keys.reduce((obj, item) => {
+                obj[item] = item.split('').reverse().join('')
+                return obj
+            }, {})
+
+        }
+        console.log(mirror({
+            abc: undefined,
+            hello: undefined,
+        }))
+
+    </script>
+</body>
+
+</html>

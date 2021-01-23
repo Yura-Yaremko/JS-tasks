@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        function getMax(num) {
+            if (typeof (num) !== "number") {
+                return NaN
+            }
+            let operationWithNum = num.toString().split('').sort((a, b) => a - b).filter(el => el !== "," && el !== ".").reverse().join('')
+            let resultNumber = +operationWithNum
+            return resultNumber
+            return operationWithNum
+        }
+
+        console.log(getMax(6118))
+        console.log(getMax(17))
+        console.log(getMax(17.5))
+        console.log(getMax("Hello"))
+
+        //---------------------
+
+        function cleanString(s) {
+            const result = [];
+            for (let i = 0; i < s.length; i++) {
+                if (s[i] !== '#') {
+                    result.push(s[i])
+                }
+                else { result.pop() }
+            };
+            return result.join('')
+
+            return [...s].reduce((acc, currentValue) => currentValue !== "#" ? acc + currentValue : acc.substring(0, acc.length - 1), '')
+        }
+
+        console.log(cleanString('абв#г##д'))
+        console.log(cleanString('Прив###ока'))
+
+    </script>
+</body>
+
+</html>

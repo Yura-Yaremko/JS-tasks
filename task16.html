@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function orderedCount(text) {
+            return Object.entries(text.split('').reduce((result, item) => {
+                if (result[item]) {
+                    result[item] += 1
+                    return result
+                } else {
+                    result[item] = 1
+                    return result
+                }
+            }, {}))
+            //-----------------
+
+            let result = new Map
+            text.split('').forEach(item => {
+                if (result.has(item)) {
+                    result.set(item, result.get(item) + 1)
+                } else {
+                    result.set(item, 1)
+                }
+            })
+            return Array.from(result)
+        }
+
+        console.log(orderedCount('abracadabra'))
+        console.log(orderedCount('233312'))
+
+        //------------------------------
+
+        function mergeArrays(a, b) {
+            let result = []
+            let bigger = [a.length, b.length].sort((a, b) => a - b)
+
+            for (let i = 0; i < bigger[1]; i++) {
+                if (a[i] !== undefined && b[i] !== undefined) {
+                    result.push(a[i])
+                    result.push(b[i])
+                } else if (a[i] === undefined && b[i] !== undefined) {
+                    result.push(b[i])
+                } else {
+                    result.push(a[i])
+                }
+            }
+            return result
+        }
+
+        console.log(mergeArrays([1, 2, 3, 4, 5, 6, 7, 8], ['a', 'b', 'c', 'd', 'e']))
+        console.log(mergeArrays([1, 2, 3], ['a', 'b', 'c', 'd', 'e', 'f']))
+        //------------------------
+
+        function moveVowel(input) {
+            let arrLetters = ['a', 'e', 'i', 'o', 'u', 'y']
+            return [...input.split('').filter(item => !arrLetters.includes(item)), ...input.split('').filter(item => arrLetters.includes(item))].join('')
+        }
+
+        console.log(moveVowel('day'))
+        console.log(moveVowel('apple'))
+        console.log(moveVowel('peace'))
+
+    </script>
+</body>
+
+</html>

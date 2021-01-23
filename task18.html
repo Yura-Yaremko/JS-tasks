@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function getPrize(guessScore, realScore) {
+            if (guessScore === realScore) {
+                return 2
+            } else if (guessScore[0] > guessScore[2] && realScore[0] > realScore[2] || guessScore[0] < guessScore[2] && realScore[0] < realScore[2]) {
+                return 1
+            } else {
+                return 0
+            }
+        }
+
+        console.log(getPrize('1:2', '1:2'))
+        console.log(getPrize('2:1', '5:0'))
+        console.log(getPrize('3:0', '2:2'))
+        console.log(getPrize('3:3', '2:2'))
+
+        //-------------------------------------
+
+        function output() {
+            for (let i = 10000; i < 99999; i += 2) {
+                let str = i.toString().split('').map(el => +el)
+                let sum = str.reduce((result, item) => {
+                    result = item
+                    return result
+                })
+                if (str[2] % 2 !== 0 && sum % 4 === 0) {
+                    console.log(str.join(''))
+                }
+            }
+        }
+        console.log(output())
+
+    </script>
+</body>
+
+</html>

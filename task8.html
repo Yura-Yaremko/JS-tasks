@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+</head>
+
+<body>
+    <script>
+        function greeting(name) {
+            return `Hello, ${name}, are you ready for interview?`
+        }
+
+        console.log(greeting('Pavel'))
+        console.log(greeting('Andrew'))
+
+        //-------------------------------
+
+        function isInteger(num) {
+            return typeof (num) === 'number' && Number.isInteger(num) ? true : false
+            return typeof (num) === 'number' ? (num.toString().includes('.') ? false : true) : false
+            return typeof (num) === 'number' ? (num % 1 === 0 ? true : false) : false
+            return typeof (num) === 'number' && num % 1 === 0
+        }
+
+        console.log(isInteger('5'))
+        console.log(isInteger(5.5))
+        console.log(isInteger(5))
+
+        //----------------------------------
+
+        function numering(arr) {
+            return arr.reduce((result, item, id) => {
+                result[id + 1] = item
+                return result
+            }, {})
+            return arr.reduce((result, item, id) => {
+                result.push(`${id + 1} : ${item}`)
+                return result
+            }, [])
+            return arr.map((el, id) => `${id + 1} : ${el}`)
+        }
+
+        console.log(numering(['a', 'b', 'c', 'd']))
+
+        //----------------------------
+
+        function pluck(arr, key) {
+            return arr.reduce((result, item) => {
+                item[key] != undefined ? result.push(item[key]) : false
+                return result
+            }, [])
+        }
+
+        console.log(pluck([{ a: 1 }, { a: 2 }], 'a'))
+        console.log(pluck([{ a: 1, b: 3 }, { a: 2 }], 'b'))
+
+    </script>
+</body>
+
+</html>

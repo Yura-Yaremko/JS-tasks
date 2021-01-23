@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // -----------------1----------------
+        function repeatBracket(str) {
+            // Another variants of working function 
+
+            // const arrOpen = []
+            // const arrClose = []
+            // str.split('').map(el => el === '(' ? arrOpen.push(el) : arrClose.push(el))
+            // return arrOpen.length === arrClose.length ? true : false
+
+            //--------------------------
+
+            // let countOpen = 0
+            // let countClose = 0
+
+            // str.split('').map(el => el === '(' ? countOpen++ : countClose++)
+
+            // console.log(countOpen)
+            // console.log(countClose)
+
+            // return countClose < countOpen ? true : false
+            // return countOpen === countClose ? true : false
+
+            //---------------------------
+
+            // let countOpen = 0
+            // let result = true
+            // for (let i = 0; i < str.length; i++) {
+            //     if (str[i] === '(') countOpen++
+            //     else countOpen--
+            //     if (countOpen < 0) result = false
+            // }
+            // if (countOpen > 0) result = false
+            // return result
+
+            //-----------------------------
+
+            let countOpen = 0
+            for (let i = 0; i < str.length; i++) {
+                if (str[i] === '(') countOpen++
+                else countOpen--
+                if (countOpen < 0) return false
+            }
+            return !countOpen
+
+        }
+
+        console.log(repeatBracket('()'))
+        console.log(repeatBracket('())'))
+        console.log(repeatBracket('((((()'))
+        console.log(repeatBracket('())('))
+
+        //-----------------2----------------
+
+
+        // function countOfRepeatableNumber(arr) {
+        //     arr.sort((a, b) => (a - b))
+        //     let maxCount = 0
+        //     let currentEl
+        //     let currentCount = 0
+        //     arr.forEach((el) => {
+        //         if (el !== currentEl) {
+        //             currentEl = el
+        //             if (currentCount > maxCount) maxCount = currentCount
+        //             currentCount = 0
+        //         }
+        //         currentCount++
+        //     })
+        //     if (currentCount > maxCount) maxCount = currentCount
+        //     return maxCount
+        // }
+
+        //----------------------------
+
+        // function func1(arr) {
+        //     let arrayObject = {}
+        //     arr.forEach(el => {
+        //         arrayObject[el] ? arrayObject[el]++ : arrayObject[el] = 1
+        //         console.log(arrayObject)
+        //     })
+        //     let maxCount = 0
+        //     for (let key in arrayObject) {
+        //         maxCount = (arrayObject[key] > maxCount) ? arrayObject[key] : maxCount
+        //     }
+        //     return maxCount
+        // }
+
+        // console.log(func1([0, 1, 3, 3, 4, 7, 7, 7, 7, 9]))
+        // console.log(func1([0, 1, 1, 1, 1, 7, 9]))
+
+        //-----------------------------------
+        function countOfRepeatableNumber(arr) {
+            return Math.max(...Object.values(arr.reduce((acc, el) => {
+                acc[el] = (acc[el]) ? acc[el] + 1 : 1
+                return acc
+            }, {})))
+        }
+
+        console.log(countOfRepeatableNumber([0, 1, 3, 3, 4, 7, 7, 7, 7, 9]))
+        console.log(countOfRepeatableNumber([0, 1, 1, 1, 1, 7, 9]))
+
+
+    </script>
+</body>
+
+</html>

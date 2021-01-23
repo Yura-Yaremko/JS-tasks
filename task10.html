@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function replaceItem(arr, item, replaceItem) {
+            return arr.map(el => el === item ? replaceItem : el)
+        }
+        console.log(replaceItem([1, 2, 3, 4, 2], 2, 'a'))
+
+        //------------------------------
+
+        let arr = [1, 2, [3, 4, [5]], 6, 7, [[8]]]
+        let newArr = []
+
+        function arrayCreator(arr) {
+            for (let i = 0; i < arr.length; i++) {
+                if (typeof (arr[i]) === 'object') {
+                    arrayCreator(arr[i])
+                } else {
+                    newArr.push(arr[i])
+                }
+            }
+            return newArr
+        }
+
+        console.log(arrayCreator(arr))
+
+        //-----------------------
+        console.log([1, 2, [3, 4, [5]], 6, 7, [[8]]].toString().split(',').map(elem => +elem))
+
+        //--------------------------------
+
+    </script>
+</body>
+
+</html>
